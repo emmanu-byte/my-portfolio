@@ -1,5 +1,6 @@
 
 import { useState } from 'react'
+import myPic from './assets/my pic.jpg'
 import './App.css'
 
 function App() {
@@ -20,10 +21,19 @@ function App() {
         </div>
       </nav>
 
-      {/* Home */}
+      {/* Home Section */}
       <section id="home" className="hero-section">
-        <div>
-          <h1>Hello, I'm Emmanuel</h1>
+
+        <div className="image-container">
+          <img
+            src={myPic}
+            alt="My profile"
+            className="profile-image"
+          />
+        </div>
+
+        <div className="hero-content">
+          <h1>Hello, I'm Emmanuel Bentil</h1>
 
           <h2>Welcome to My Website</h2>
 
@@ -36,9 +46,10 @@ function App() {
             You clicked me {count} times
           </button>
         </div>
+
       </section>
 
-      {/* About */}
+      {/* About Section */}
       <section id="about" className="section">
         <h2>About Me</h2>
 
@@ -49,11 +60,13 @@ function App() {
         </p>
       </section>
 
-      {/* Skills */}
+      {/* Skills Section */}
       <section id="skills" className="section">
+
         <h2>My Skills</h2>
 
         <div className="skills">
+
           <div className="card">
             <h3>HTML</h3>
             <p>Creating the structure of websites.</p>
@@ -73,19 +86,25 @@ function App() {
             <h3>React</h3>
             <p>Building modern web applications.</p>
           </div>
+
         </div>
+
       </section>
 
-      {/* Contact */}
+      {/* Contact Section */}
       <section id="contact" className="section">
+
         <h2>Contact Me</h2>
 
         <p>Email: benitoteezy@gmail.com</p>
         <p>Phone: +233 556004920</p>
 
-        <button onClick={() => alert('Thank you for contacting me!')}>
+        <button
+          onClick={() => alert('Thank you for contacting me!')}
+        >
           Contact Me
         </button>
+
       </section>
 
       {/* Footer */}
