@@ -1,120 +1,115 @@
+import { useState, useEffect } from "react";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  NavLink
+} from "react-router-dom";
 
-import { useState } from 'react'
-import myPic from './assets/my pic.jpg'
-import './App.css'
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Skills from "./pages/Skills";
+import Projects from "./pages/Projects";
+import Contact from "./pages/contacts";
+
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [theme, setTheme] = useState("dark");
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
+  function toggleTheme() {
+    setTheme((previous) =>
+      previous === "dark" ? "light" : "dark"
+    );
+  }
 
   return (
-    <div className="app">
+    <BrowserRouter>
+      <div className="page">
 
-      {/* Navigation */}
-      <nav>
-        <h2>My Website</h2>
+        {/* Navigation Bar */}
 
-        <div className="nav-links">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </nav>
+        <header className="nav">
 
-      {/* Home Section */}
-      <section id="home" className="hero-section">
+          <NavLink to="/" className="logo">
+            Emmanuel<span>.</span>
+          </NavLink>
 
-        <div className="image-container">
-          <img
-            src={myPic}
-            alt="My profile"
-            className="profile-image"
-          />
-        </div>
+          <nav className="nav-links">
 
-        <div className="hero-content">
-          <h1>Hello, I'm Emmanuel Bentil</h1>
+            <NavLink to="/" end>
+              Home
+            </NavLink>
 
-          <h2>Welcome to My Website</h2>
+            <NavLink to="/about">
+              About
+            </NavLink>
+
+            <NavLink to="/skills">
+              Skills
+            </NavLink>
+
+            <NavLink to="/projects">
+              Projects
+            </NavLink>
+
+            <NavLink to="/contact">
+              Contact
+            </NavLink>
+
+          </nav>
+
+          <button
+            className="theme-toggle"
+            onClick={toggleTheme}
+            type="button"
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? "☀️" : "🌙"}
+          </button>
+
+        </header>
+
+        {/* Main Pages */}
+
+        <main>
+
+          <Routes>
+
+            <Route path="/" element={<Home />} />
+
+            <Route path="/about" element={<About />} />
+
+            <Route path="/skills" element={<Skills />} />
+
+            <Route path="/projects" element={<Projects />} />
+
+            <Route path="/contact" element={<Contact />} />
+
+          </Routes>
+
+        </main>
+
+        {/* Footer */}
+
+        <footer className="footer">
 
           <p>
-            I am a student learning programming and web development.
-            This is my personal website created with React.
+            © {new Date().getFullYear()} Emmanuel Bentil.
+            All Rights Reserved.
           </p>
 
-          <button onClick={() => setCount(count + 1)}>
-            You clicked me {count} times
-          </button>
-        </div>
+          <p>Designed and developed with React.</p>
 
-      </section>
+        </footer>
 
-      {/* About Section */}
-      <section id="about" className="section">
-        <h2>About Me</h2>
-
-        <p>
-          My name is Emmanuel. I am interested in programming,
-          software development and technology. I am currently
-          improving my skills in React, JavaScript, Python and C++.
-        </p>
-      </section>
-
-      {/* Skills Section */}
-      <section id="skills" className="section">
-
-        <h2>My Skills</h2>
-
-        <div className="skills">
-
-          <div className="card">
-            <h3>HTML</h3>
-            <p>Creating the structure of websites.</p>
-          </div>
-
-          <div className="card">
-            <h3>CSS</h3>
-            <p>Designing and styling websites.</p>
-          </div>
-
-          <div className="card">
-            <h3>JavaScript</h3>
-            <p>Adding functionality to websites.</p>
-          </div>
-
-          <div className="card">
-            <h3>React</h3>
-            <p>Building modern web applications.</p>
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="section">
-
-        <h2>Contact Me</h2>
-
-        <p>Email: benitoteezy@gmail.com</p>
-        <p>Phone: +233 556004920</p>
-
-        <button
-          onClick={() => alert('Thank you for contacting me!')}
-        >
-          Contact Me
-        </button>
-
-      </section>
-
-      {/* Footer */}
-      <footer>
-        <p>© 2026 My Website. All rights reserved.</p>
-      </footer>
-
-    </div>
-  )
+      </div>
+    </BrowserRouter>
+  );
 }
 
-export default App
-
+export default App;
